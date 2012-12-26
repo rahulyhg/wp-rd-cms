@@ -5,7 +5,6 @@ function rd_get_langs(){
 	return array(
 		'en',
 		'nl',
-		'fr',
 	);
 }
 
@@ -14,18 +13,27 @@ function rd_get_langs_except_current(){
 }
 
 function rd_get_lang_links(){
-	$langs = rd_get_langs_except_current();
-	$url = $_SERVER['REQUEST_URI'];
+	$langs = rd_get_langs();
+	$links = array();
 	foreach ($langs as $lang) {
-		if (!empty($_GET)) {
-			$urlHere = str_replace('lang=' . rd_get_current_lang(), 'lang=' . $lang, $url);
-		} else {
-			$char = (strpos($url, '?') === false) ? '?' : '&';
-			$urlHere = $url . $char . 'lang=' . $lang;
-		}
-		$links[] = '<a href="' . $urlHere . '">' . $lang . '</a>';
+		$links[] = rd_get_lang_link($lang);
 	}
 	return $links;
+}
+
+function rd_get_lang_link($lang){
+	$url = $_SERVER['REQUEST_URI'];
+	if (!empty($_GET)) {
+		$urlHere = str_replace('lang=' . rd_get_current_lang(), 'lang=' . $lang, $url);
+	} else {
+		$char = (strpos($url, '?') === false) ? '?' : '&';
+		$urlHere = $url . $char . 'lang=' . $lang;
+	}
+	$class = '';
+	if ($lang == rd_get_current_lang()) {
+		$class = ' class="selected" ';
+	}
+	return '<a href="' . $urlHere . '" ' . $class . '>' . $lang . '</a>';
 }
 
 function rd_get_current_lang(){

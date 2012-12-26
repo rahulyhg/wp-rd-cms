@@ -35,6 +35,14 @@ require_once('multi_lang.php');
 
 $rd_modules = array(
 	array(
+		'name' => 'rd_project',
+		'class_name' => 'Rd_Project',
+	),
+	array(
+		'name' => 'rd_news',
+		'class_name' => 'Rd_News',
+	),
+	array(
 		'name' => 'rd_page',
 		'class_name' => 'Rd_Page',
 	),
@@ -52,7 +60,6 @@ class Rd_Cms {
 	protected $_langs = array(
 		'en',
 		'nl',
-		'fr',
 	);
 	protected $_fields = array();
 	protected $_taxonomies = array();
