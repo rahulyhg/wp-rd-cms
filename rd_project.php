@@ -9,11 +9,11 @@ class Rd_Project extends Rd_Cms{
 
 		parent::__construct();
 
-		$this->_taxonomies = array($this->_post_type_id . '_types', 'post_tag');		
+		$this->_taxonomies = array('rd_project_types');		
 
 		$this->_fields[] = array(
-			'name' => 'author',
-			'title' => 'Author',
+			'name' => 'authors',
+			'title' => 'Authors',
 			'type' => 'plain_text',
 			'context' => 'side',
 		);
@@ -38,19 +38,10 @@ class Rd_Project extends Rd_Cms{
 
 		foreach ($this->_langs as $lang) {
 			$this->_fields[] = array(
-				'name' => 'subtitle1_' . $lang,
-				'title' => 'Subtitle 1 ' . $lang,
-				'type' => 'plain_text',
-				'context' => 'side',
-			);
-		}
-
-		foreach ($this->_langs as $lang) {
-			$this->_fields[] = array(
-				'name' => 'subtitle2_' . $lang,
-				'title' => 'Subtitle 2 ' . $lang,
-				'type' => 'plain_text',
-				'context' => 'side',
+				'name' => 'credits_' . $lang,
+				'title' => 'Credits ' . $lang,
+				'type' => 'wysiwyg',
+				'context' => 'normal',
 			);
 		}
 
