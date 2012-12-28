@@ -21,6 +21,14 @@ class Rd_News extends Rd_Cms{
 		}
 		foreach ($this->_langs as $lang) {
 			$this->_fields[] = array(
+				'name' => 'home_intro_' . $lang,
+				'title' => 'Intro for home ' . $lang,
+				'type' => 'wysiwyg',
+				'context' => 'normal',
+			);
+		}
+		foreach ($this->_langs as $lang) {
+			$this->_fields[] = array(
 				'name' => 'text_' . $lang,
 				'title' => 'Text ' . $lang,
 				'type' => 'wysiwyg',

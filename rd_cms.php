@@ -206,7 +206,7 @@ class Rd_Cms {
 	/**
 	 * Display the image meta box
 	 */
-	public function image_meta_box() {
+	public function image_meta_box( $object, $box ) {
 
 		// see http://www.foxrunsoftware.net/articles/wordpress/custom-post-type-with-image-uploads/
 

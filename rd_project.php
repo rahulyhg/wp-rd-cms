@@ -45,11 +45,21 @@ class Rd_Project extends Rd_Cms{
 			);
 		}
 
+		foreach ($this->_langs as $lang) {
+			$this->_fields[] = array(
+				'name' => 'home_intro_' . $lang,
+				'title' => 'Intro for home ' . $lang,
+				'type' => 'wysiwyg',
+				'context' => 'normal',
+			);
+		}
+
 		$this->_fields[] = array(
 			'name' => 'image',
-			'title' => 'Image',
+			'title' => 'Thumbnail (min width: 340px, for homepage)',
 			'type' => 'image',
 			'context' => 'side',
+			'description' => ''
 		);
 
 		$this->_fields[] = array(
