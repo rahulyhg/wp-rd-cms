@@ -39,6 +39,10 @@ $rd_modules = array(
 		'class_name' => 'Rd_Project',
 	),
 	array(
+		'name' => 'rd_event',
+		'class_name' => 'Rd_Event',
+	),
+	array(
 		'name' => 'rd_news',
 		'class_name' => 'Rd_News',
 	),
@@ -64,6 +68,8 @@ class Rd_Cms {
 	protected $_fields = array();
 	protected $_taxonomies = array();
 	protected $_register_post_type_options = array();
+
+	protected $_dateTimeLibsIncluded = false;
 
 	public function __construct() {
 		
@@ -303,6 +309,35 @@ class Rd_Cms {
 			'editor_css' => '<style>#wp-' . $box['id'] . '-editor-container .wp-editor-area{height:150px; width:100%;}</style>'
 		);
  		wp_editor($content, $box['id'] . '_editor', $settings);		
+	}
+
+	public function date_time_meta_box( $object, $box ){
+		?>
+		<p>
+			<label for="<?php print $box['id'] ?>"><?php _e( $box['title'], 'example' ); ?></label>
+			<br />
+			<input type="hidden" name="<?php print $box['id'] ?>" id="<?php print $box['id'] ?>_fld" value="<?php echo esc_attr( get_post_meta( $object->ID, $box['id'], true ) ); ?>" />
+			<input type="text" name="<?php print $box['id'] ?>_picker" id="<?php print $box['id'] ?>_picker" value="<?php echo esc_attr( get_post_meta( $object->ID, $box['id'], true ) ); ?>" size="30" />
+		</p>
+		<?php if (!$this->_dateTimeLibsIncluded): ?>
+			<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+			<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+			<script src="<?php print plugins_url('/js/caret.js', __FILE__); ?>"></script>
+			<script src="<?php print plugins_url('/js/datetimepicker.js', __FILE__); ?>"></script>
+			<script src="<?php print plugins_url('/js/js_date_to_mysql_datetime.js', __FILE__); ?>"></script>
+			<link rel="stylesheet" href="<?php print plugins_url('/css/datetimepicker.css', __FILE__); ?>">
+			<?php $this->_dateTimeLibsIncluded = true; ?>
+		<?php endif ?>
+		<script type="text/javascript">
+			jQuery(window).load(function(){
+				jQuery("#<?php print $box['id'] ?>_picker").datetimepicker({
+					change: function (e, dt) {
+						jQuery("#<?php print $box['id'] ?>_fld").val(dt.toMysqlFormat());
+					}
+				});
+			});
+		</script>
+		<?php
 	}
 
 	public function init_taxonomy(){

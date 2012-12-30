@@ -61,3 +61,10 @@ function rd_pagination_link($new_offset){
 	$url .= '?' . join($frags, '&');
 	return $url;
 }
+
+function rd_fmt_url($val){
+	if(strpos($val, 'http://') !== 0){
+		$val = 'http://' . $val;
+	}
+	return $val;
+}
