@@ -32,6 +32,13 @@ class Rd_Page extends Rd_Cms{
 			);
 		}
 
+		$this->_fields[] = array(
+			'name' => 'authors',
+			'title' => 'Authors',
+			'type' => 'plain_text',
+			'context' => 'side',
+		);
+
 	}
 
 }
