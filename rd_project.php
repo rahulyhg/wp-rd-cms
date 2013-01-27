@@ -20,6 +20,15 @@ class Rd_Project extends Rd_Cms{
 
 		foreach ($this->_langs as $lang) {
 			$this->_fields[] = array(
+				'name' => 'location_' . $lang,
+				'title' => 'Location ' . $lang,
+				'type' => 'plain_text',
+				'context' => 'side',
+			);
+		}
+
+		foreach ($this->_langs as $lang) {
+			$this->_fields[] = array(
 				'name' => 'title_' . $lang,
 				'title' => 'Title ' . $lang,
 				'type' => 'plain_text',
