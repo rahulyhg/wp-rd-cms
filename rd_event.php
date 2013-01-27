@@ -20,8 +20,8 @@ class Rd_Event extends Rd_Cms{
 
 		foreach ($this->_langs as $lang) {
 			$this->_fields[] = array(
-				'name' => 'venue_text_' . $lang,
-				'title' => 'Venue text ' . $lang,
+				'name' => 'text_' . $lang,
+				'title' => 'Text ' . $lang,
 				'type' => 'plain_text',
 				'context' => 'normal',
 			);
@@ -29,8 +29,8 @@ class Rd_Event extends Rd_Cms{
 
 		foreach ($this->_langs as $lang) {
 			$this->_fields[] = array(
-				'name' => 'venue_url_' . $lang,
-				'title' => 'Venue URL ' . $lang,
+				'name' => 'url_' . $lang,
+				'title' => 'URL ' . $lang,
 				'type' => 'plain_text',
 				'context' => 'normal',
 			);
@@ -94,7 +94,7 @@ class Rd_Event extends Rd_Cms{
 		$cols = array(
 			'cb' => '<input type="checkbox" />',
 			'start_date_time' => 'Time',
-			'venue_text_en' => 'Venue',
+			'text_en' => 'Text',
 			'rd_project_id' => 'Project',
 		);
 		return $cols;
@@ -119,14 +119,14 @@ class Rd_Event extends Rd_Cms{
 			$columns,
 			array(
 				'start_date_time' => 'start_date_time',
-				'venue_text_en' => 'venue_text_en',
+				'text_en' => 'text_en',
 				'rd_project_id' => 'rd_project_id',
 			)
 		);
 	}
 
 	function column_orderby($vars){
-		if (isset($vars['orderby']) && in_array($vars['orderby'], array('start_date_time', 'venue_text'))) {
+		if (isset($vars['orderby']) && in_array($vars['orderby'], array('start_date_time', 'text'))) {
 			$vars = array_merge($vars, array(
 				'meta_key' => $vars['orderby'],
 				'orderby' => 'meta_value_num',
