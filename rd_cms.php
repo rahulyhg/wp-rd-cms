@@ -330,11 +330,16 @@ class Rd_Cms {
 		<?php endif ?>
 		<script type="text/javascript">
 			jQuery(window).load(function(){
-				jQuery("#<?php print $box['id'] ?>_picker").datetimepicker({
-					change: function (e, dt) {
+				var options = {};
+				options.change = function (e, dt) {
 						jQuery("#<?php print $box['id'] ?>_fld").val(dt.toMysqlFormat());
-					}
-				});
+				};
+				var date = jQuery("#<?php print $box['id'] ?>_fld").val();
+				if (date) {
+					var t = date.split(/[- :]/);
+					options.date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+				}
+				jQuery("#<?php print $box['id'] ?>_picker").datetimepicker(options);
 			});
 		</script>
 		<?php
