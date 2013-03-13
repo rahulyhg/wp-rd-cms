@@ -72,6 +72,12 @@ class Rd_Project extends Rd_Cms{
 		);
 
 		$this->_fields[] = array(
+			'name' => 'sort_home',
+			'title' => 'Order on home',
+			'type' => 'plain_text',
+			'context' => 'side',
+		);
+		$this->_fields[] = array(
 			'name' => 'vimeo_id',
 			'title' => 'Vimeo ID',
 			'type' => 'plain_text',
